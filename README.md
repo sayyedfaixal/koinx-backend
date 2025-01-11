@@ -113,3 +113,82 @@ This will start the server on port `3000` by default. You can change the port by
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 #
+ --- 
+
+
+# API Documentation for Crypto Stats
+
+## Base URL
+```
+https://koinx-backend-d3z6.onrender.com
+```
+
+## Available Routes
+
+### 1. `/api/deviation`
+#### Method: `GET`
+- **Description**: This endpoint retrieves the standard deviation of the prices for a specific cryptocurrency.
+- **Query Parameters**:
+  - `coin`: The name of the cryptocurrency (e.g., `bitcoin`, `ethereum`, `matic-network`).
+  
+#### Example Request
+```http
+GET https://koinx-backend-d3z6.onrender.com/api/deviation?coin=bitcoin
+```
+
+#### Response
+```json
+{
+  "deviation": 234.56
+}
+```
+
+#### Errors
+- **404 Not Found**: If no data is found for the requested coin.
+```json
+{
+  "message": "Data not found"
+}
+```
+
+- **500 Internal Server Error**: If there is an error processing the request.
+```json
+{
+  "error": "An error message"
+}
+```
+
+### 2. `/api/coins`
+#### Method: `GET`
+- **Description**: This endpoint returns a list of coins available in the database.
+  
+#### Example Request
+```http
+GET https://koinx-backend-d3z6.onrender.com/api/coins
+```
+
+#### Response
+```json
+[
+  {
+    "coin": "bitcoin",
+    "price": 50000,
+    "marketCap": 1000000000000,
+    "change24h": 2.5
+  },
+  {
+    "coin": "ethereum",
+    "price": 3500,
+    "marketCap": 400000000000,
+    "change24h": 1.2
+  }
+]
+```
+
+#### Errors
+- **500 Internal Server Error**: If there is an error fetching the list of coins.
+```json
+{
+  "error": "An error message"
+}
+```
